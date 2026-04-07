@@ -786,6 +786,7 @@ public class EQUIPOS extends javax.swing.JFrame {
         // Cambiar de lugar las anotadas y recibidas según cambie si perdió o ganó
         try{
             asignar();
+            oCN.Equipos(JCBRival, temporada, categoria);
             jTFAnotadas.setText(Integer.toString(recibidas));
             jTFRecibidas.setText(Integer.toString(anotadas));
             
@@ -881,7 +882,7 @@ public class EQUIPOS extends javax.swing.JFrame {
             oCN.Equipos(jCBEquipo, temporada, categoria);
             oCN.Equipos(jCBEquipo, temporada, categoria);
             
-            oCN.mostrarBateador(modelo, oCN.claveEquipo(equipo, categoria, temporada));
+            oCN.mostrarEquipo(modelo ,categoria, temporada);
             
             
         } catch(NullPointerException e) {

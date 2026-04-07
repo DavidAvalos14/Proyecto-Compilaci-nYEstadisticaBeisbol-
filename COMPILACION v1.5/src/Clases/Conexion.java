@@ -2433,11 +2433,18 @@ public class Conexion {
             oFW = new FileWriter(guardar, false);
             oPW = new PrintWriter(oFW);
             
+            // Hay titulos que no quiero recorrer, los marcamos en una lista y despues marcamos en que posiciones estan
+            //String[] titulos = {"2B", "3B", "HR", "CP", "BB", "BG", "BR", "TS", "FS", "SAC", "SLG", "OBP", "OPS"};
+            //int[] indices = new int[titulos.length];
+            
             //Recorrer los encabezados
-            for(int i=0; i < Tabla.getColumnCount(); i++){
-                String titulo = modeloColumna.getColumn(i).getIdentifier().toString();
-                oPW.print(titulo + "\t");
+            int i=0;
+            for(i=0; i < Tabla.getColumnCount()-1; i++){
+                String titulo = modeloColumna.getColumn(i).getIdentifier().toString() + "\t";
+                oPW.print(titulo);
             }
+            
+            oPW.print(modeloColumna.getColumn(i).getIdentifier().toString());
             
             //Brincar un renglón
             oPW.println();
@@ -2446,11 +2453,13 @@ public class Conexion {
             /*if(Tabla.getRowCount()<10) x = Tabla.getRowCount();
             else x=10;*/
             
-            for(int i=0; i < Tabla.getRowCount()/*x*/; i++){
-                for(int j=0; j < Tabla.getColumnCount(); j++){
+            int j=0;
+            for(i=0; i < Tabla.getRowCount()/*x*/; i++){
+                for(j=0; j < Tabla.getColumnCount()-1; j++){
                     String parametro = Tabla.getValueAt(i, j).toString();
                     oPW.print(parametro + "\t");
                 }
+                oPW.print(Tabla.getValueAt(i, j).toString());
                 oPW.println();
             }
             
